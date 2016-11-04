@@ -5,15 +5,18 @@ import os
 import subprocess
 app = Flask(__name__)
 
-@app.route("/hello2", methods=["POST"])
+@app.route("/hello2", methods=["POST", "GET"])
 def hello2():
-    obj = request.get_json(silent=True)
-    print(obj)
-    a = obj.get("a", "")
-    b = obj.get("b", "")
-    print(a, b)
-    # return "Test"
-    return jsonify(a=a, b=b)
+    if request.method == 'POST':
+        obj = request.get_json(silent=True)
+        print(obj)
+        a = obj.get("a", "")
+        b = obj.get("b", "")
+        print("hello2")
+        return (a, b)
+    else:
+        return {"a":2}
+    # return jsonify(a=a, b=b)
 
 @app.route("/")
 def hello(name=None):

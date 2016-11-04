@@ -1,33 +1,70 @@
 <!doctype html>
 <html>
-<head>
-<title>Hello from Flask</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-  function submit() {
-    var a = document.getElementById('a');
-    var b = document.getElementById('b');
 
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:5000/hello2",
-        data: JSON.stringify({"a": a.value, "b": b.value}),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function(data) {
-          console.log(data);
-          t = data;
-        },
-        failure: function(errMsg) {
-            alert(errMsg);
+<head>
+    <title>Hello from Flask</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function submit() {
+            var a = document.getElementById('a');
+            var b = document.getElementById('b');
+            document.getElementById('result').value = parseInt(a.value) + parseInt(b.value);
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:5000/hello2",
+                data: JSON.stringify({
+                    "a": a.value,
+                    "b": b.value
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data) { // what does this function do
+                    console.log(data);
+                    console.log(111);
+                    // alert("hahaha");
+                },
+                failure: function(errMsg) {
+                    alert(errMsg);
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:5000/hello2",
+                // data: JSON.stringify({
+                //     "a": a.value,
+                //     "b": b.value
+                // }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data) { // what does this function do
+                    console.log(data);
+                    console.log(111);
+                    // alert("hahaha");
+                },
+                failure: function(errMsg) {
+                    alert(errMsg);
+                }
+            });
         }
-    });
-  }
-</script>
+    </script>
+    <style>
+        #label_a {
+            vertical-align: middle;
+        }
+    </style>
+
 </head>
+
 <body>
-  <textarea id="a"></textarea>
-  <textarea id="b"></textarea>
-  <button type="button" onclick="submit();">Submit</button>
+    <label for="a" id="label_a">Input a</label>
+    <textarea id="a"></textarea>
+    <label for="a">Input b</label>
+    <textarea id="b"></textarea>
+    <button type="button" onclick="submit();">Submit</button>
+    <label for="a">Result</label>
+    <textarea id="result"></textarea>
 </body>
+
 </html>
