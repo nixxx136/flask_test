@@ -3,32 +3,41 @@ from flask import Flask, request, jsonify
 from flask import render_template
 import os
 import subprocess
+
 app = Flask(__name__)
 
-@app.route("/hello2", methods=["POST"])
+@app.route("/process", methods=["POST"])
 def hello2():
     obj = request.get_json(silent=True)
     print(obj)
     a = obj.get("a", "")
     b = obj.get("b", "")
 
+    f = open("tmp.dat", "w+")
+    f.write(a + "\n")
+    f.write(b + "\n")
+    f.close()
+
     # create an json object here and pass that object to ./a.out
-    proc = subprocess.Popen(["./a.out", "data.in"], stdout=subprocess.PIPE)
+    proc = subprocess.Popen(["./a.out", "tmp.dat"], stdout=subprocess.PIPE)
     output = proc.communicate()[0]
     print(output)
 
-    print("hello2")
-    return jsonify(a=a, b=b)
+    # os.system('g++ add.cpp')
+    # print(os.system('./a.out tmp.dat'))
+
+    print("end")
+    return jsonify(res = output)
     # return jsonify(a=a, b=b)
 
 @app.route("/")
-def hello(name=None):
+def home(name=None):
     #.get('code', '')
     # print(output)
     # os.system('g++ add.cpp')
     # os.system('./a.out data.in')
     # return "Hello World!\n"+output
-    return render_template('hello.html', name=name)
+    return render_template('page.html', name=name)
 
 if __name__ == "__main__":
     app.run()

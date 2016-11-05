@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Hello from Flask</title>
+    <title>Simple Flask Demo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
         function submit() {
@@ -12,7 +12,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "http://localhost:5000/hello2",
+                url: "http://localhost:5000/process",
                 data: JSON.stringify({
                     "a": a.value,
                     "b": b.value
@@ -21,7 +21,7 @@
                 dataType: "json",
                 success: function(data) { // what does this function do
                     console.log(data);
-                    document.getElementById('result').value = data["a"];
+                    document.getElementById('result').value = data["res"];
                     console.log(111);
                     // alert("hahaha");
                 },
@@ -40,6 +40,7 @@
 </head>
 
 <body>
+    <h1>This is a Simple flask RESTful Web Demo</h1>
     <label for="a" id="label_a">Input a</label>
     <textarea id="a"></textarea>
     <label for="a">Input b</label>
