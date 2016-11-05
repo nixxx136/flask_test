@@ -7,7 +7,7 @@ import subprocess
 app = Flask(__name__)
 
 @app.route("/process", methods=["POST"])
-def hello2():
+def process():
     obj = request.get_json(silent=True)
     print(obj)
     a = obj.get("a", "")
@@ -19,8 +19,9 @@ def hello2():
     f.close()
 
     # create an json object here and pass that object to ./a.out
+    # https://docs.python.org/2/library/subprocess.html#popen-constructor
     proc = subprocess.Popen(["./a.out", "tmp.dat"], stdout=subprocess.PIPE)
-    output = proc.communicate()[0]
+    output = proc.communicate()[0] # communicate() returns a tuple (stdoutdata, stderrdata).
     print(output)
 
     # os.system('g++ add.cpp')

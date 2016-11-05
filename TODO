@@ -1,7 +1,7 @@
+* ~~In hello.py, hello2 method, support json input. Change name of those files and methods.~~
+* ~~Rename file name and method name~~
+
 * Figure out "POST" and "GET"
 ..* What is "success" in .ajax POST method and GET method? How to use them?
 ..* How to show the data in the result textarea by using GET method?
-
-* Rename file name and method name
-
-* In hello.py, hello2 method, support json input. Change name of those files and methods.
+* In flask-server.py process method, write data into json file instead of plain text.
