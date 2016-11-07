@@ -32,8 +32,15 @@
         }
     </script>
     <style>
-        #label_a {
-            vertical-align: middle;
+        #input_left {
+            float: left;
+            width: 48%;
+            padding: 10px;
+        }
+        #output_right {
+            float: right;
+            width: 48%;
+            padding: 10px;
         }
     </style>
 
@@ -41,13 +48,25 @@
 
 <body>
     <h1>This is a Simple flask RESTful Web Demo</h1>
-    <label for="a" id="label_a">Input a</label>
-    <textarea id="a"></textarea>
-    <label for="a">Input b</label>
-    <textarea id="b"></textarea>
-    <button type="button" onclick="submit();">Submit</button>
-    <label for="a">Result</label>
-    <textarea id="result"></textarea>
+
+    <div id="input_left">
+        <div>
+            <label for="a" id="label_a">Input a</label>
+            <textarea id="a"></textarea>
+        </div>
+        <div>
+            <label for="a">Input b</label>
+            <textarea id="b"></textarea>
+        </div>
+        <div>
+            <button type="button" onclick="submit();">Submit</button>
+        </div>
+    </div>
+
+    <div id="output_right">
+        <label for="a">Result</label>
+        <textarea id="result" rows="10" cols="100"></textarea>
+    </div>
 </body>
 
 </html>
