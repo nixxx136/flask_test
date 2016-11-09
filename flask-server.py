@@ -20,7 +20,7 @@ def process():
 
     # create an json object here and pass that object to ./a.out
     # https://docs.python.org/2/library/subprocess.html#popen-constructor
-    proc = subprocess.Popen(["./a.out", "tmp.dat"], stdout=subprocess.PIPE)
+    proc = subprocess.Popen(["build/add", "-i", "testInput.json"], stdout=subprocess.PIPE)
     output = proc.communicate()[0] # communicate() returns a tuple (stdoutdata, stderrdata).
     print(output)
 
